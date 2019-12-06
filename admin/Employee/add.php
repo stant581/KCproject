@@ -19,7 +19,27 @@ else
         $date = $_POST['date'];
         $hr1 = $_POST['hr1'];
         $x = $hours+$hr1;
-        
+        if($hr1>8)
+        {
+            echo "<script>alert('Cannot add more than 8 hours')</script>";
+        }
+        else
+        {
+            $flag=1;
+            $sql = "SELECT * FROM tblholiday";
+            $results=$conn->query($sql);
+            $results->fetch_all(MYSQLI_ASSOC);
+            $cnt=1;
+            if($results->num_rows> 0)
+            {
+            foreach($results as $result)
+            { 
+                if($result['Date']==$date)
+                    $flag=0;
+            }
+            }
+            if($flag!=0)
+            {
         $sql = "INSERT INTO tbltimesheet (CID, EID, hr, date, approve) VALUES ('$cid' , '$eid', '$hr1', '$date', '$approve')";
         $result=$conn->query($sql);
         if($result=="TRUE"){
@@ -28,7 +48,8 @@ else
         else{
              echo "Error: " . $sql . "<br>" . $conn->error;
         }
-        
+        }
+        }
     }
     header('dashboard.php');
 ?>
@@ -154,3 +175,4 @@ foreach($results as $result)
 <?php
 }
 ?>
+

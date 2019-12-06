@@ -109,11 +109,12 @@ else{
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Date</th>
-					   					                      <th>Hours</th>
-                                            <th>Approved</th>
-                                            <th>Action</th>
+                                            <th><center>#</center></th>
+                                            <th><center>Date</center></th>
+					   					    <th><center>Hours</center></th>
+                                            <th><center>Approved</center></th>
+                                            <th><center>Action</center></th>
+                                            <th><center>Remove</center></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -127,21 +128,30 @@ if($results->num_rows> 0)
 foreach($results as $result)
 {               ?>
                                         <tr class="odd gradeX">
-                                            <td class="center"><?php echo htmlentities($cnt);?></td>
-                                            <td class="center"><?php echo htmlentities($result['date']);?></td>
-                                            <td class="center"><?php echo htmlentities($result['hr']);?></td>
+                                            <td class="center"><center><?php echo htmlentities($cnt);?></center</td>
+                                            <td class="center"><center><?php echo htmlentities($result['date']);?></center</td>
+                                            <td class="center"><center><?php echo htmlentities($result['hr']);?></center</td>
                                             <td class="centre">
+                                                <center>
                                             <?php $x = $result['approve'];
                                                         if ($x!=0)
                                                             echo htmlentities("Yes") ;
                                                         else
                                                             echo htmlentities("No");
                                                         
-                                            ?>
+                                            ?></center
                                            </td>
                                            
                                         <td class="centre">
+                                            <center>
                                             <a href="update.php?EID=<?php echo htmlentities($eid);?>&CID=<?php echo htmlentities($cid);?>&hr = <?php echo htmlentities($hr);?>&date=<?php echo htmlentities($result['date']) ?>"><button class="btn btn-primary"><i class="fa fa-edit "></i> Update</button>
+                                            </center>
+                                          </td>
+                                          
+                                        <td class="centre">
+                                            <center>
+                                            <a href="delete.php?EID=<?php echo htmlentities($eid);?>&CID=<?php echo htmlentities($cid);?>&hr = <?php echo htmlentities($result['hr']);?>&date=<?php echo htmlentities($result['date']) ?>"><button class="btn btn-danger"><i class="fa fa-trash "></i> Delete</button>
+                                            </center>
                                           </td>
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                <tr class="odd gradeX">
@@ -179,3 +189,4 @@ foreach($results as $result)
 </body>
 </html>
 <?php } ?>
+
