@@ -16,7 +16,7 @@ $status=1;$cid = $_GET['CID'];
 
 $conn->query($sql);
 
-header('location:manage-projects.php');
+echo '<script>window.history.back();</script>';
 }
 }
 ?>
